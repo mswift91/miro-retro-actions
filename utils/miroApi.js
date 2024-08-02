@@ -32,7 +32,21 @@ async function fetchAllItems(boardId) {
     return actionsBoxes[0];
   }
   
+  function getPostItsInBox(items, box) {
+    return items.filter(item => item.type === 'sticky_note' && item.position && isInside(box, item));
+  }
+  
+  function isInside(box, item) {
+    return (
+      item.position.x > (box.position.x - box.geometry.width / 2) &&
+      item.position.x < (box.position.x + box.geometry.width / 2) &&
+      item.position.y > (box.position.y - box.geometry.height / 2) &&
+      item.position.y < (box.position.y + box.geometry.height / 2)
+    );
+  }
+  
   module.exports = {
     fetchAllItems,
     findMostRecentActionsBox,
+    getPostItsInBox,
   };
