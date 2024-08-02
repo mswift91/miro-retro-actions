@@ -1,5 +1,5 @@
 const { miro, slack } = require('../config/config');
-const { fetchAllItems, findMostRecentActionsBox, getPostItsInBox, stripPTags } = require('/utils/miroApi');
+const { fetchAllItems, findMostRecentActionsBox, getPostItsInBox, stripPTags } = require('../utils/miroApi');
 const { WebClient } = require('@slack/web-api');
 
 const slackClient = new WebClient(slack.token);
