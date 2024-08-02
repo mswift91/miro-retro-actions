@@ -1,21 +1,7 @@
-const { miro, slack } = require('../config/config');
-const { fetchAllItems, findMostRecentActionsBox, getPostItsInBox, stripPTags } = require('../utils/miroApi');
-const { WebClient } = require('@slack/web-api');
-
-const slackClient = new WebClient(slack.token);
-
-async function sendToSlack(message) {
-  try {
-    console.log('Sending message to Slack channel:', slack.channel);
-    await slackClient.chat.postMessage({
-      channel: slack.channel,
-      text: message,
-    });
-    console.log('Message sent to Slack');
-  } catch (error) {
-    console.error('Error sending message to Slack:', error);
-  }
-}
+const { miro } = require('../config/config');
+const { fetchAllItems, findMostRecentActionsBox, getPostItsInBox } = require('../services/miroService');
+const { sendToSlack } = require('../services/slackService');
+const { stripPTags } = require('../utils/utils');
 
 async function main() {
   try {
