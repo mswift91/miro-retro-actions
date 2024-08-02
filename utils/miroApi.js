@@ -44,9 +44,15 @@ async function fetchAllItems(boardId) {
       item.position.y < (box.position.y + box.geometry.height / 2)
     );
   }
+
+function stripPTags(content) {
+    return content.replace(/<\/?p>/g, '');
+  }
   
   module.exports = {
     fetchAllItems,
     findMostRecentActionsBox,
     getPostItsInBox,
+    stripPTags,
   };
+  
