@@ -26,6 +26,13 @@ async function fetchAllItems(boardId) {
     return items;
   }
   
+  function findMostRecentActionsBox(items) {
+    const actionsBoxes = items.filter(item => item.type === 'shape' && item.data && item.data.content && item.data.content.includes('Actions'));
+    actionsBoxes.sort((a, b) => new Date(b.modifiedAt) - new Date(a.modifiedAt));
+    return actionsBoxes[0];
+  }
+  
   module.exports = {
     fetchAllItems,
+    findMostRecentActionsBox,
   };
